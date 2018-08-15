@@ -1,0 +1,351 @@
+{
+  "name": "Fortnite",
+  "version": 1.0,
+  "cover": "./assets/cover.png",
+  "windowTitle": "Fortnite",
+  "filename": "FortniteClient-Win64-Shipping_BE.exe",
+  "supportedResolutions": {
+    "1280x720(Windowed)": {
+      "width": 1280,
+      "height": 720,
+      "hudScale": 100,
+      "contrast": 50,
+      "disability": null
+    }
+  },
+  "assets": [
+    {
+      "path": "./assets/cover.png",
+      "url": "https://i.imgur.com/VbNZ2Dr.png"
+    }, {
+      "path": "./assets/map.png",
+      "url": "https://i.imgur.com/iDjwuK3.jpg"
+    }, {
+      "path": "./assets/state-warmup.png",
+      "url": "https://i.imgur.com/YPjOsH8.png"
+    }, {
+      "path": "./assets/state-flight.png",
+      "url": "https://i.imgur.com/vFKxxCz.png"
+    }, {
+      "path": "./assets/state-jump.png",
+      "url": "https://i.imgur.com/8NFQbRt.png"
+    }, {
+      "path": "./assets/btn-play.png",
+      "url": "https://i.imgur.com/uyeuOB1.png"
+    }, {
+      "path": "./assets/btn-return-to-lobby.png",
+      "url": "https://i.imgur.com/E4fhvhe.png"
+    }
+  ],
+  "elements": {
+    "1280x720(Windowed)": {
+      "map": {
+          "position": [292, 17],
+          "size": [702, 702]
+      },
+      "minimap": {
+          "position": [1084, 10],
+          "size": [186, 186]
+      },
+      "state": {
+          "position": [1080, 200],
+          "size": [84, 30]
+      },
+      "lobby": {
+        "position": [162, 12],
+        "size": [24, 24]
+      },
+      "health-0": {
+        "position": [504, 644],
+        "size": [2, 14]
+      },
+      "health-100": {
+        "position": [788, 644],
+        "size": [2, 14]
+      },
+      "playButton": {
+        "position": [972, 582],
+        "size": [308, 100]
+      },
+      "cancelButton": {
+        "position": [998, 600],
+        "size": [266, 64]
+      },
+      "returnToLobbyButton" : {
+        "position": [1126, 677],
+        "size": [150, 42]
+      }
+    }
+  },
+  "templates": {
+    "1280x720(Windowed)": {
+      "map": {
+        "path": "./assets/map.png",
+        "evalSize": [133, 133]
+      },
+      "stateWarmup": {
+        "path": "./assets/state-warmup.png",
+        "evalSize": [16, 16]
+      },
+      "stateFlight": {
+        "path": "./assets/state-flight.png",
+        "evalSize": [16, 16]
+      },
+      "stateJump": {
+        "path": "./assets/state-jump.png",
+        "evalSize": [16, 16]
+      },
+      "playButton": {
+        "path": "./assets/btn-play.png",
+        "evalSize": [266, 64]
+      },
+      "returnToLobbyButton": {
+        "path": "./assets/btn-return-to-lobby.png",
+        "evalSize": [142, 27]
+      }
+    }
+  },
+  "states": [
+    {
+      "name": "initiated",
+      "title": "Inititating",
+      "hint": "Please do not touch keyboard or mouse. Fortnite will be set as foreground window in 5sec",
+      "duration":  5
+    },
+    {
+      "name": "lobby",
+      "title": "Lobby",
+      "evaluations": [{
+        "element": "lobby",
+        "method": "dominant-color",
+        "expected": [4, 12, 44],
+        "tolerance": 10,
+        "isMatching": true
+      }],
+      "duration":  0
+    },
+    {
+      "name": "popup-closing",
+      "title": "Removing poupus",
+      "hint": "Removing any unwanted popup windows(news, collecting rewards)",
+      "macros": [{
+        "type": "key-press",
+        "key": "esc",
+        "times": 1,
+        "duration": 1.5
+      }],
+      "evaluations": [{
+        "element": "playButton",
+        "method": "match-template",
+        "template": "playButton",
+        "expected": 0.000318,
+        "tolerance": 0.01,
+        "isMatching": true
+      }],
+      "duration":  5
+    },
+    {
+      "name": "unanvailable",
+      "title": "Fortnite is not running!",
+      "hint": "Please ensure that Fortnite is running and lobby of Battle Royale mode is currently open",
+      "duration":  0
+    },
+    {
+      "name": "joining",
+      "title": "Joining match",
+      "macros": [{
+        "type": "button-press-on-match",
+        "template": "playButton",
+        "element": "playButton",
+        "geometry": [900, 450, 380, 270]
+      }],
+      "duration":  60
+    },
+    {
+      "name": "matchmaking",
+      "title": "Matchmaking",
+      "hint": "Waiting in queue. Evaluating if match started in 5sec",
+      "duration":  5
+    },
+    {
+      "name": "unjoinable",
+      "title": "Fortnite is not running!",
+      "hint": "Match didn't start in expected time. Starting new match",
+      "macros": [{
+        "type": "button-press",
+        "element": "cancelButton"
+      }],
+      "duration":  60
+    },
+    {
+      "name": "started",
+      "title": "Match started",
+      "duration":  0
+    },
+    {
+      "name": "warmup",
+      "title": "Warmup",
+      "hint": "Warmup stage will start soon",
+      "evaluations": [{
+        "element": "state",
+        "method": "match-template",
+        "template": "stateWarmup",
+        "expected": 0.000855,
+        "tolerance": 0.001,
+        "isMatching": true
+      }],
+      "duration":  20
+    },
+    {
+      "name": "flight",
+      "title": "Flight",
+      "hint": "Bus flight stage will start soon",
+      "evaluations": [{
+        "element": "state",
+        "method": "match-template",
+        "template": "stateFlight",
+        "expected": 0.000855,
+        "tolerance": 0.001,
+        "isMatching": true
+      }],
+      "duration": 50
+    },
+    {
+      "name": "preparing",
+      "title": "Preparing",
+      "hint": "Preparing for jump in 15 sec",
+      "evaluations": [{
+        "element": "state",
+        "method": "match-template",
+        "template": "stateJump",
+        "expected": 0.000855,
+        "tolerance": 0.001,
+        "isMatching": true
+      }],
+      "duration": 15
+    },
+    {
+      "name": "jumped",
+      "title": "Jumped",
+      "macros": [{
+        "type": "key-press",
+        "key": "space",
+        "times": 1,
+        "duration": 2
+      }],
+      "duration": 2
+    },
+    {
+      "name": "parachuting",
+      "title": "Opening glider",
+      "macros": [{
+        "type": "key-press",
+        "key": "space",
+        "times": 1,
+        "duration": 2
+      }],
+      "duration": 2
+    },
+    {
+      "name": "evaluating-destination",
+      "title": "Evaluating destination",
+      "duration": 2
+    },
+    {
+      "name": "destination-evaluated",
+      "title": "Destination found: ",
+      "duration": 2
+    },
+    {
+      "name": "evaluating-position",
+      "title": "Evaluating position",
+      "hint": "Evaluating position, please don't touch keyboard or mouse",
+      "duration": 10
+    },
+    {
+      "name": "navigating",
+      "title": "Navigating",
+      "hint": "Navigating to landing point: ",
+      "duration": 120
+    },
+    {
+      "name": "arrived",
+      "title": "Arrived to destination",
+      "hint": "Arrived to landing destination. Descending",
+      "duration": 170
+    },
+    {
+      "name": "landed",
+      "title": "Landed at destination",
+      "duration": 20
+    },
+    {
+      "name": "setup",
+      "title": "Setting up",
+      "macros": [{
+        "type": "key-press",
+        "key": "ctrl_l",
+        "times": 1,
+        "duration": 1
+      }, {
+        "type": "key-press",
+        "key": "q",
+        "times": 1,
+        "duration": 1
+      }],
+      "duration": 0
+    },
+    {
+      "name": "match",
+      "title": "BRO, AFK!",
+      "evaluations": [{
+         "element": "returnToLobbyButton",
+         "method": "match-template",
+         "template": "returnToLobbyButton",
+         "expected": 0.0270000,
+         "tolerance": 0.135,
+         "isMatching": true
+       }],
+      "duration": 1500
+    },
+    {
+      "name": "dead",
+      "title": "Dead",
+      "duration": 5
+    },
+    {
+      "name": "ended",
+      "title": "Match ended",
+      "hint": "Returning to menu",
+      "macros": [{
+        "type": "button-press",
+        "element": "returnToLobbyButton"
+      }],
+      "duration": 5
+    },
+    {
+      "name": "zone-0",
+      "title": "Storm forming",
+      "duration": 60
+    }
+  ],
+  "safePoints": [{
+    "coords": [533, 419]
+  }],
+  "settings": {
+    "userPoints": [{"coords": [756, 383], "color": [144, 184, 182]}],
+    "runFor": 0,
+    "resolution": "1280x720(Windowed)",
+    "globalDelay": 0.150,
+    "selectedPoints": "preselected",
+    "isRetrying": true,
+    "logging": {
+      "isEnabled": true,
+      "level": "debug"
+    },
+    "ahk": {
+      "path": null,
+      "isEnabled": false
+    }
+  }
+}
