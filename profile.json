@@ -16,25 +16,25 @@
   "assets": [
     {
       "path": "./assets/cover.png",
-      "url": "https://i.imgur.com/VbNZ2Dr.png"
+      "url": "https://image.ibb.co/fP9Jv9/cover.png"
     }, {
       "path": "./assets/map.png",
-      "url": "https://i.imgur.com/uRpuRqp.jpg"
+      "url": "https://image.ibb.co/jNyp2p/map.png"
     }, {
       "path": "./assets/state-warmup.png",
-      "url": "https://i.imgur.com/YPjOsH8.png"
+      "url": "https://image.ibb.co/cuHhNp/state_warmup.png"
     }, {
       "path": "./assets/state-flight.png",
-      "url": "https://i.imgur.com/vFKxxCz.png"
+      "url": "https://image.ibb.co/mZkDTU/state_flight.png"
     }, {
       "path": "./assets/state-jump.png",
-      "url": "https://i.imgur.com/8NFQbRt.png"
+      "url": "https://image.ibb.co/mudp2p/state_jump.png"
     }, {
       "path": "./assets/btn-play.png",
-      "url": "https://i.imgur.com/uyeuOB1.png"
+      "url": "https://image.ibb.co/ePyBF9/btn_play.png"
     }, {
       "path": "./assets/btn-return-to-lobby.png",
-      "url": "https://i.imgur.com/E4fhvhe.png"
+      "url": "https://image.ibb.co/cptdv9/btn_return_to_lobby.png"
     }
   ],
   "elements": {
@@ -333,7 +333,7 @@
     "coords": [533, 419]
   }],
   "settings": {
-    "userPoints": [{"coords": [756, 383], "color": [144, 184, 182]}],
+    "userPoints": [{"coords": [499, 329], "color": [184, 127, 226]}, {"coords": [525, 449], "color": [49, 122, 49]}, {"coords": [518, 417], "color": [33, 53, 96]}, {"coords": [643, 649], "color": [89, 140, 79]}, {"coords": [646, 736], "color": [120, 196, 165]}, {"coords": [591, 590], "color": [26, 235, 194]}, {"coords": [549, 619], "color": [59, 74, 96]}, {"coords": [642, 671], "color": [236, 190, 38]}, {"coords": [761, 361], "color": [208, 195, 92]}],
     "runFor": 0,
     "resolution": "1280x720(Windowed)",
     "globalDelay": 0.150,
